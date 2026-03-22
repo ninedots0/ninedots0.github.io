@@ -2,7 +2,7 @@
 title: "线性代数学习记录"
 publishDate: "2026-03-22"
 description: ""
-tags: ["invest"]
+tags: ["maths"]
 language: "zh-CN"
 selected: true # 是否推荐到首页
 ---
