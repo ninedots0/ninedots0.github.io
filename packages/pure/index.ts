@@ -1,5 +1,6 @@
-import { spawn } from 'node:child_process'
-import { dirname, relative } from 'node:path'
+import { join, relative } from 'node:path'
+import { readdir, readFile } from 'node:fs/promises'
+import { createIndex, close } from 'pagefind'
 import { fileURLToPath } from 'node:url'
 // Astro
 import type { AstroIntegration, RehypePlugins, RemarkPlugins } from 'astro'
@@ -95,18 +96,30 @@ export default function AstroPureIntegration(opts: UserInputConfig): AstroIntegr
         })
       },
 
-      'astro:build:done': ({ dir }) => {
+      'astro:build:done': async ({ dir, logger }) => {
         if (!opts.integ.pagefind) return
-        const targetDir = fileURLToPath(dir)
-        const cwd = dirname(fileURLToPath(import.meta.url))
-        const relativeDir = relative(cwd, targetDir)
-        return new Promise<void>((resolve) => {
-          spawn('npx', ['-y', 'pagefind', '--site', relativeDir], {
-            stdio: 'inherit',
-            shell: true,
-            cwd
-          }).on('close', () => resolve())
-        })
+        // One Chinese-capable index also searches embedded English words.
+        const { index, errors } = await createIndex({ forceLanguage: 'zh', excludeSelectors: ['.katex'] })
+        if (!index || errors.length) throw new Error(errors.join('\n') || 'Pagefind initialization failed')
+        try {
+          const output = fileURLToPath(dir)
+          const blogDir = join(output, 'blog')
+          const files = await readdir(blogDir, { recursive: true })
+          let count = 0
+          for (const file of files) {
+            if (!file.endsWith('.html')) continue
+            const fullPath = join(blogDir, file)
+            const content = await readFile(fullPath, 'utf8')
+            if (!content.includes('data-pagefind-body')) continue
+            const url = '/' + relative(output, fullPath).replaceAll('\\', '/').replace(/\/index\.html$/, '')
+            const added = await index.addHTMLFile({ url, content })
+            if (added.errors.length) throw new Error(added.errors.join('\n'))
+            count++
+          }
+          const written = await index.writeFiles({ outputPath: join(fileURLToPath(dir), 'pagefind') })
+          if (written.errors.length) throw new Error(written.errors.join('\n'))
+          logger.info(`Pagefind: indexed ${count} blog pages`)
+        } finally { await close() }
       }
     }
   }

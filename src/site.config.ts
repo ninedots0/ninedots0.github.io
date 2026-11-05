@@ -3,7 +3,7 @@ import type { CardListData, Config, IntegrationUserConfig, ThemeUserConfig } fro
 export const theme: ThemeUserConfig = {
   // [Basic]
   /** Title for your website. Will be used in metadata and as browser tab title. */
-  title: '9dots\' ink',
+  title: '9dots',
   /** Will be used in index page & copyright declaration */
   author: '9dots',
   /** Description metadata for your website. Can be used in page metadata. */
@@ -11,7 +11,7 @@ export const theme: ThemeUserConfig = {
   /** The default favicon for your site which should be a path to an image in the `public/` directory. */
   favicon: '/favicon/favicon.ico',
   /** The default social card image for your site which should be a path to an image in the `public/` directory. */
-  socialCard: '/images/social-card.png',
+  socialCard: '/images/avatar.png',
   /** Specify the default language for this site. */
   locale: {
     lang: 'en-US',
@@ -26,7 +26,7 @@ export const theme: ThemeUserConfig = {
   },
   /** Set a logo image to show in the homepage. */
   logo: {
-    src: '/src/assets/9dots.jpg',
+    src: '/src/assets/site-avatar.png',
     alt: 'Avatar'
   },
 
@@ -115,7 +115,7 @@ export const integ: IntegrationUserConfig = {
       { name: 'Name', val: theme.title },
       { name: 'Desc', val: theme.description || 'Null' },
       { name: 'Link', val: 'https://ninedots0.github.io/' },
-      { name: 'Avatar', val: 'https://astro-pure.js.org/favicon/favicon.ico' }
+      { name: 'Avatar', val: 'https://ninedots0.github.io/favicon/favicon-32x32.png' }
     ],
     // Cache avatars in `public/avatars/` to improve user experience.
     cacheAvatar: false

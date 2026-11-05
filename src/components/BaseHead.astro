@@ -1,7 +1,6 @@
 ---
-import { Font } from 'astro:assets'
 
-import { prod } from 'astro-pure/server'
+
 import type { SiteMeta } from 'astro-pure/types'
 import config from 'virtual:config'
 
@@ -9,7 +8,7 @@ type Props = SiteMeta
 
 const { articleDate, description, ogImage, title } = Astro.props
 
-const siteTitle = `${title} ${config.titleDelimiter} ${config.title}`
+const siteTitle = title === config.title ? config.title : `${title} ${config.titleDelimiter} ${config.title}`
 const canonicalURL = new URL(Astro.url.pathname, Astro.site)
 const socialImageURL = new URL(ogImage ? ogImage : config.socialCard, Astro.url).href
 ---
@@ -27,13 +26,8 @@ const socialImageURL = new URL(ogImage ? ogImage : config.socialCard, Astro.url)
 <link rel='apple-touch-icon' sizes='180x180' href='/favicon/apple-touch-icon.png' />
 <link rel='manifest' href='/favicon/site.webmanifest' />
 
-{/* Font preloads */}
-<Font cssVariable='--font-satoshi' preload={[{ subset: 'latin', style: 'normal' }]} />
-<style>
-  body {
-    font-family: var(--font-satoshi);
-  }
-</style>
+{/* Small local regular-weight CJK subset, reused by article and interface text. */}
+<link rel='preload' href='/fonts/source-han-sans/SourceHanSansSC-Regular.woff' as='font' type='font/woff' crossorigin />
 
 {/* Canonical URL */}
 <link rel='canonical' href={canonicalURL} />
@@ -45,7 +39,7 @@ const socialImageURL = new URL(ogImage ? ogImage : config.socialCard, Astro.url)
 
 {/* Theme Color */}
 {/* <meta content='' name='theme-color' /> */}
-<meta name='color-scheme' content='light dark' />
+<meta name='color-scheme' content='light' />
 
 {/* Open Graph / Facebook */}
 <meta content={articleDate ? 'article' : 'website'} property='og:type' />
@@ -55,8 +49,10 @@ const socialImageURL = new URL(ogImage ? ogImage : config.socialCard, Astro.url)
 <meta content={config.title} property='og:site_name' />
 <meta content={config.locale.attrs} property='og:locale' />
 <meta content={socialImageURL} property='og:image' />
-<meta content='1200' property='og:image:width' />
-<meta content='630' property='og:image:height' />
+{(!ogImage || ogImage === config.socialCard) && <>
+  <meta content='512' property='og:image:width' />
+  <meta content='512' property='og:image:height' />
+</>}
 {
   articleDate && (
     <>
@@ -85,14 +81,3 @@ const socialImageURL = new URL(ogImage ? ogImage : config.socialCard, Astro.url)
 />
 
 <meta content={Astro.generator} name='generator' />
-
-{
-  /* User script*/
-  prod && (
-    <script>
-      console.log( '%c Astro Theme Pure %c https://github.com/cworld1/astro-theme-pure/',
-      'color:#fff;background:linear-gradient(90deg,#448bff,#44e9ff);padding:5px 0;',
-      'color:#000;background:linear-gradient(90deg,#44e9ff,#ffffff);padding:5px 10px 5px 0px;' )
-    </script>
-  )
-}

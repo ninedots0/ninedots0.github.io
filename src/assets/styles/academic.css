@@ -1,0 +1,97 @@
+/* Blog-only reading surface. Keep the site's navigation and other pages intact. */
+body.academic-page {
+  --background: 0 0% 100%;
+  --foreground: 0 0% 0%;
+  --muted-foreground: 0 0% 35%;
+  --primary: 0 0% 20%;
+  --muted: 0 0% 97%;
+  --border: 0 0% 80%;
+  --card: 0 0% 100%;
+  color-scheme: light;
+  background: white;
+  color: black;
+}
+.academic-document {
+  max-width: 100%;
+  margin: 0 auto 4rem;
+  font-family: var(--font-reading);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.65;
+  letter-spacing: normal;
+  color: #202938;
+  overflow-wrap: anywhere;
+}
+.academic-document:lang(zh) { font-size: 17px; line-height: 1.75; }
+.academic-heading { margin: 0 0 1.5rem; text-align: left; }
+.academic-heading h1 { font-size: 24px; font-weight: 700; line-height: 1.25; letter-spacing: -0.02em; color: #202938; margin: 0 0 0.25rem; }
+.academic-heading h1:lang(zh) { letter-spacing: normal; }
+.academic-metadata { font: 13px/1.5 ui-monospace, SFMono-Regular, Consolas, monospace; color: #737373; }
+.academic-document .academic-metadata a { text-decoration: none; }
+.academic-document .academic-metadata a:hover { text-decoration: underline; }
+.academic-document a { color: inherit; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
+.academic-document a:hover { color: #555; }
+.academic-document a:focus-visible { outline: 1px solid currentColor; outline-offset: 3px; }
+.academic-content :is(h1, h2, h3, h4, h5, h6) { font-weight: 700; line-height: 1.45; margin: 1.75em 0 0.5em; scroll-margin-top: 5rem; }
+.academic-content h1 { font-size: 1.65em; }
+.academic-content h2 { font-size: 1.4em; }
+.academic-content h3 { font-size: 1.18em; }
+.academic-content :is(h4, h5, h6) { font-size: 1em; }
+.academic-content .anchor { display: none; }
+.academic-content p { margin: 0 0 1.5em; }
+.academic-content :is(ul, ol) { padding-left: 1.6em; margin: 1em 0; }
+.academic-content ul { list-style: disc; }
+.academic-content ol { list-style: decimal; }
+.academic-content li { margin: 0.35em 0; }
+.academic-content li > p { margin-bottom: 0.5em; }
+.academic-content blockquote { margin: 1.5em 1em; padding: 0; color: #444; font-style: italic; }
+.academic-content :is(img, video) { max-width: 100%; height: auto; margin: 1.5em auto; }
+.academic-content figure { margin: 1.5em 0; }
+.academic-content figcaption { text-align: center; font-size: 0.875em; color: #555; }
+.academic-content hr { border: 0; border-top: 1px solid #ddd; margin: 2em 0; }
+.academic-content table { display: block; max-width: 100%; overflow-x: auto; border-collapse: collapse; margin: 1.5em 0; font-size: 0.95em; }
+.academic-content :is(th, td) { text-align: left; padding: 0.45em 0.8em; border-bottom: 1px solid #ddd; }
+.academic-content th { font-weight: 700; }
+/* Scroll only display math; leave inline math and KaTeX's internal geometry alone. */
+.academic-content .katex { font-size: 1em; }
+.academic-content .katex-display {
+  font-size: 17px;
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.35em 0.25em;
+  margin: 0.65em 0;
+  text-align: center;
+}
+/* Keep a wide formula's left edge reachable instead of centering its overflow
+   outside the scroll area. Short formulas still center within the column. */
+.academic-content .katex-display > .katex {
+  width: max-content;
+  min-width: 100%;
+}
+.academic-content .katex-html { overflow: visible; padding: 0; }
+.academic-content .katex-html .base { margin: 0; }
+.academic-content .katex-html .tag { position: absolute !important; display: inline-block; padding-inline-start: 0; }
+.academic-content code { font-family: 'Cascadia Code', Consolas, monospace; font-size: 0.85em; }
+.academic-content :not(pre) > code { background: transparent; padding: 0; }
+.academic-content .astro-code { border-radius: 0; background: transparent !important; margin: 1.5em 0; }
+.academic-content :is(pre, .astro-code.collapsed pre) { max-height: none; overflow-x: auto; padding: 0.75em 0; line-height: 1.6; background: transparent; }
+.academic-content .astro-code pre code { width: max-content; min-width: 100%; }
+.academic-content .astro-code pre code::before,
+.academic-content .astro-code pre code .line::before { display: none; }
+.academic-content .astro-code pre code .line { padding: 0; }
+.academic-content .astro-code pre span { color: #222 !important; background: transparent !important; }
+.academic-content .astro-code :is(.copy, .language, .collapse-toggle, .collapse-fade) { display: none; }
+.academic-content .astro-code .title { position: static; margin: 0; padding: 0; border: 0; border-radius: 0; font-size: 0.8em; }
+.academic-content .astro-code:has(div.title) { padding-top: 0; }
+@media (max-width: 640px) {
+  .academic-heading { margin: 0 0 1.25rem; }
+  .academic-content blockquote { margin-inline: 0.75em; }
+}
+@media print {
+  body.academic-page .site-header { display: none; }
+  .academic-document { max-width: none; margin: 0; font-size: 11pt; }
+  .academic-content .katex-display { overflow: visible; }
+}
+

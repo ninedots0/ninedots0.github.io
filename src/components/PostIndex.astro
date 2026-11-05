@@ -1,0 +1,18 @@
+---
+import type { CollectionEntry } from 'astro:content'
+import { publicationDate } from '@/utils/publication'
+interface Props { posts: CollectionEntry<'blog'>[] }
+const { posts } = Astro.props
+const sorted = [...posts].sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf())
+---
+<ul class='post-index' aria-label='Articles by publication year'>
+  {sorted.map((post, index) => {
+    const year = post.data.publishDate.getUTCFullYear()
+    const first = index === 0 || sorted[index - 1].data.publishDate.getUTCFullYear() !== year
+    return <li>
+      <span class='post-year'>{first ? year : ''}</span>
+      <a href={`/blog/${post.id}`}>{post.data.title}</a>
+      <time datetime={post.data.publishDate.toISOString()}>{publicationDate(post.data.publishDate)}</time>
+    </li>
+  })}
+</ul>

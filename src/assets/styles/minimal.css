@@ -1,0 +1,58 @@
+/* Local CJK-only Source Han Sans subsets; Geist keeps Latin glyphs. */
+@font-face {
+  font-family: '9dots Han Sans';
+  src: url('/fonts/source-han-sans/SourceHanSansSC-Regular.woff') format('woff');
+  font-weight: 400; font-style: normal; font-display: swap;
+  unicode-range: U+2E80-9FFF, U+F900-FAFF, U+FF00-FFEF;
+}
+@font-face {
+  font-family: '9dots Han Sans';
+  src: url('/fonts/source-han-sans/SourceHanSansSC-Bold.woff') format('woff');
+  font-weight: 700; font-style: normal; font-display: swap;
+  unicode-range: U+2E80-9FFF, U+F900-FAFF, U+FF00-FFEF;
+}
+:root { --font-reading: Geist, Arial, '9dots Han Sans', 'Source Han Sans SC', 'Noto Sans CJK SC', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif; }
+@font-face { font-family: Geist; src: url('/fonts/geist/Geist.ttf') format('truetype'); font-weight: 100 900; font-style: normal; font-display: swap; }
+/* Reference geometry: 42rem shell, 24px gutters, 14px index, 56px year column. */
+html { color-scheme: light; background: #fff; }
+body.minimal-site { margin: 0; background: #fff; color: #171717; font-family: var(--font-reading); font-size: 14px; line-height: 1.5; --background: 0 0% 100%; --foreground: 0 0% 9%; --muted-foreground: 0 0% 45%; --primary: 0 0% 9%; }
+.minimal-site #main-container { max-width: 42rem; padding: 24px; margin: 0 auto; min-height: 100dvh; }
+.site-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 40px; }
+.site-name { font-size: 18px; font-weight: 700; letter-spacing: -0.4px; }
+.site-header nav { display: flex; align-items: center; gap: 20px; font-size: 12px; }
+.site-header button { display: flex; align-items: center; padding: 8px; margin-right: -8px; background: transparent; cursor: pointer; border: 0; }
+.minimal-site a { color: inherit; text-decoration: none; }
+.minimal-site a:hover { color: #737373; }
+.minimal-site :focus-visible { outline: 1px solid #777; outline-offset: 4px; }
+.post-index { padding: 0; margin: 0 0 40px; list-style: none; }
+.post-index li { display: grid; grid-template-columns: 56px minmax(0, 1fr) auto; align-items: baseline; column-gap: 0; padding: 8px 0; }
+.post-index a { padding-right: 16px; overflow-wrap: anywhere; }
+.post-year, .post-index time { font-size: 12px; color: #737373; font-weight: 400; }
+.post-index time { white-space: nowrap; font-variant-numeric: tabular-nums; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.search-dialog { color: #171717; background: #fff; border: 0; border-radius: 0; padding: 24px; width: min(42rem, calc(100% - 32px)); max-height: 80dvh; margin: 10dvh auto auto; overflow-y: auto; }
+.search-dialog::backdrop { background: rgb(255 255 255 / 94%); }
+.search-form { display: flex; align-items: center; gap: 16px; }
+.search-form input { width: 100%; min-width: 0; padding: 10px 0; background: white; border: 0; border-bottom: 1px solid #ddd; border-radius: 0; font: inherit; }
+.search-form button { background: none; border: 0; color: #737373; cursor: pointer; font: inherit; }
+.search-status { margin: 20px 0; color: #737373; font-size: 13px; }
+.search-results { padding: 0; list-style: none; }
+.search-results a { display: flex; gap: 12px; justify-content: space-between; padding: 12px 0; }
+.search-results time { font-size: 12px; color: #737373; flex-shrink: 0; }
+.search-results a:focus { text-decoration: underline; }
+.minimal-site .animate { animation: none; opacity: 1; }
+@media (max-width: 640px) {
+  .minimal-site #main-container { padding: 12px 24px 24px; }
+  .site-header { margin-bottom: 20px; }
+  .site-name { font-size: 16px; }
+  .post-index li { grid-template-columns: 40px minmax(0, 1fr) auto; }
+}
+@media (max-width: 420px) {
+  .post-index li { grid-template-columns: 40px minmax(0, 1fr); row-gap: 2px; }
+  .post-index time { grid-column: 2; }
+  .search-results a { flex-direction: column; gap: 3px; }
+}
+
+/* Native selection: include styled descendants without changing selection mechanics. */
+::selection { background: #000; color: #fff; text-shadow: none; }
+::-moz-selection { background: #000; color: #fff; text-shadow: none; }
