@@ -1,51 +1,55 @@
 ---
-import { Button, Collapse, Spoiler, Timeline } from 'astro-pure/user'
-import PageLayout from '@/layouts/CommonPage.astro'
-import Substats from '@/components/about/Substats.astro'
-import ToolSection from '@/components/about/ToolSection.astro'
-
-const headings = [
-  { depth: 2, slug: 'about-blog', text: 'About Blog' }
-]
+import PageLayout from '@/layouts/BaseLayout.astro'
+import '@/assets/styles/academic.css'
 ---
 
-<PageLayout title='About' {headings} comment>
-  <p>Researcher / Investor</p>
-  <p>你好，我叫9dots。</p>
-  <p>目前就读于南方科技大学（SUSTech）</p>
-  <p>我的兴趣主要在 control theory / ML / Investment 方向</p>
-  <p>我的邮箱是ninedots0@gmail.com</p>
+<PageLayout meta={{ title: 'About' }} class='academic-page'>
+  <main class='academic-document' lang='zh-CN'>
+    <article>
+      <header class='academic-heading'>
+        <h1>About</h1>
+      </header>
+      <div class='academic-content' id='content'>
+        <p>Researcher / Investor</p>
+        <p>你好，我叫9dots。</p>
+        <p>目前就读于南方科技大学（SUSTech）</p>
+        <p>我的兴趣主要在 control theory / ML / Investment 方向</p>
+        <p>我的邮箱是ninedots0@gmail.com</p>
 
-  {/* about-blog */}
-  <h2 id='about-blog'>About Blog</h2>
-  <p>Website history:</p>
-  <p>
-    The smooth operation and personalized customization of website also rely on the resources and
-    technical support provided by the following excellent projects/service providers:
-  </p>
-  <ul>
-    <li>Domain: <a href='#' target='_blank'>Vercel</a></li>
-    <li>
-      Framework & Theme: <a href='https://astro.build/' target='_blank'>Astro</a> + <a
-        href='https://github.com/cworld1/astro-theme-pure'
-        target='_blank'>Astro Theme Pure</a
-      >
-    </li>
-    <li>
-      Site hosting: <a href='https://vercel.com/' target='_blank'>Vercel</a>
-    </li>
-    <li>
-      CI/CD: <a href='https://vercel.com/workflow' target='_blank'>Vercel Workflow</a>
-    </li>
-    <li>Comment system: <a href='https://waline.js.org' target='_blank'>Waline</a></li>
-    <li>
-      Visits: <a href='https://supabase.com/' target='_blank'>Supabase</a> +
-      <a href='https://waline.js.org/' target='_blank'>Waline</a>
-    </li>
-    <li>
-      Other statistics: <a href='https://github.com/spencerwooo/substats' target='_blank'
-        >Substats</a
-      >
-    </li>
-  </ul>
+        {/* about-blog */}
+        <h2 id='about-blog'>About Blog</h2>
+        <p>Website history:</p>
+        <p>
+          The smooth operation and personalized customization of website also rely on the resources and
+          technical support provided by the following excellent projects/service providers:
+        </p>
+        <ul>
+          <li>Domain: <a href='#' target='_blank'>Vercel</a></li>
+          <li>
+            Framework & Theme: <a href='https://astro.build/' target='_blank'>Astro</a> + <a
+              href='https://github.com/cworld1/astro-theme-pure'
+              target='_blank'>Astro Theme Pure</a
+            >
+          </li>
+          <li>
+            Site hosting: <a href='https://vercel.com/' target='_blank'>Vercel</a>
+          </li>
+          <li>
+            CI/CD: <a href='https://vercel.com/workflow' target='_blank'>Vercel Workflow</a>
+          </li>
+          <li>Comment system: <a href='https://waline.js.org' target='_blank'>Waline</a></li>
+          <li>
+            Visits: <a href='https://supabase.com/' target='_blank'>Supabase</a> +
+            <a href='https://waline.js.org/' target='_blank'>Waline</a>
+          </li>
+          <li>
+            Other statistics: <a href='https://github.com/spencerwooo/substats' target='_blank'
+              >Substats</a
+            >
+          </li>
+        </ul>
+
+      </div>
+    </article>
+  </main>
 </PageLayout>
