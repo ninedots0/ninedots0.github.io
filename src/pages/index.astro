@@ -1,9 +1,8 @@
 ---
-import type { CollectionEntry } from 'astro:content'
-import { getBlogCollection } from 'astro-pure/server'
 import PageLayout from '@/layouts/BaseLayout.astro'
 import PostIndex from '@/components/PostIndex.astro'
-const posts = await getBlogCollection() as CollectionEntry<'blog'>[]
+import { getPosts } from '@/utils/posts'
+const posts = await getPosts()
 ---
 <PageLayout meta={{ title: '9dots' }}>
   <main><h1 class='visually-hidden'>Articles</h1><PostIndex {posts} /></main>

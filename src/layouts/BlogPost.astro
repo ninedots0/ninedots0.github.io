@@ -1,35 +1,24 @@
 ---
-import type { MarkdownHeading } from 'astro'
 import type { CollectionEntry } from 'astro:content'
 
-// Plugin styles
-import 'katex/dist/katex.min.css'
-
-import config from 'virtual:config'
+import { site } from '@/site.config'
 import { publicationDate } from '@/utils/publication'
 import PageLayout from '@/layouts/BaseLayout.astro'
 import '@/assets/styles/academic.css'
 
 interface Props {
   post: CollectionEntry<'blog'>
-  posts: CollectionEntry<'blog'>[]
-  headings: MarkdownHeading[]
-  remarkPluginFrontmatter: Record<string, unknown>
 }
 
 const { post: { data } } = Astro.props
 const { description, heroImage, publishDate, title } = data
 
-const socialImage = heroImage
-  ? typeof heroImage.src === 'string'
-    ? heroImage.src
-    : heroImage.src.src
-  : config.socialCard
+const socialImage = heroImage?.src.src ?? site.socialCard
 const articleDate = publishDate.toISOString()
 const articleLanguage = data.language ?? (/\p{Script=Han}/u.test(title) ? 'zh-CN' : 'en')
 ---
 
-<PageLayout meta={{ articleDate, description, ogImage: socialImage, title }} class='academic-page'>
+<PageLayout meta={{ articleDate, description, ogImage: socialImage, title }} class='academic-page' lang={articleLanguage}>
   <main class='academic-document' lang={articleLanguage}>
     <article data-pagefind-body>
       <header class='academic-heading'>

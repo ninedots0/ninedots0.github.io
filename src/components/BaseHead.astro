@@ -1,16 +1,13 @@
 ---
-
-
-import type { SiteMeta } from 'astro-pure/types'
-import config from 'virtual:config'
+import { site, type SiteMeta } from '@/site.config'
 
 type Props = SiteMeta
 
-const { articleDate, description, ogImage, title } = Astro.props
+const { articleDate, description = site.description, ogImage, title } = Astro.props
 
-const siteTitle = title === config.title ? config.title : `${title} ${config.titleDelimiter} ${config.title}`
+const siteTitle = title === site.title ? site.title : `${title} ${site.titleDelimiter} ${site.title}`
 const canonicalURL = new URL(Astro.url.pathname, Astro.site)
-const socialImageURL = new URL(ogImage ? ogImage : config.socialCard, Astro.url).href
+const socialImageURL = new URL(ogImage ?? site.socialCard, Astro.site).href
 ---
 
 <meta charset='utf-8' />
@@ -19,8 +16,8 @@ const socialImageURL = new URL(ogImage ? ogImage : config.socialCard, Astro.url)
 <title>{siteTitle}</title>
 
 {/* Icons / Favicon */}
-<link rel='icon' type={config.favicon.type} href={config.favicon.href} />
-<link rel='shortcut icon' type={config.favicon.type} href={config.favicon.href} />
+<link rel='icon' type='image/x-icon' href={site.favicon} />
+<link rel='shortcut icon' type='image/x-icon' href={site.favicon} />
 <link rel='icon' type='image/png' sizes='32x32' href='/favicon/favicon-32x32.png' />
 <link rel='icon' type='image/png' sizes='16x16' href='/favicon/favicon-16x16.png' />
 <link rel='apple-touch-icon' sizes='180x180' href='/favicon/apple-touch-icon.png' />
@@ -35,7 +32,7 @@ const socialImageURL = new URL(ogImage ? ogImage : config.socialCard, Astro.url)
 {/* Primary Meta Tags */}
 <meta content={siteTitle} name='title' />
 <meta content={description} name='description' />
-<meta content={config.author} name='author' />
+<meta content={site.author} name='author' />
 
 {/* Theme Color */}
 {/* <meta content='' name='theme-color' /> */}
@@ -46,17 +43,17 @@ const socialImageURL = new URL(ogImage ? ogImage : config.socialCard, Astro.url)
 <meta content={title} property='og:title' />
 <meta content={description} property='og:description' />
 <meta content={canonicalURL} property='og:url' />
-<meta content={config.title} property='og:site_name' />
-<meta content={config.locale.attrs} property='og:locale' />
+<meta content={site.title} property='og:site_name' />
+<meta content={site.locale} property='og:locale' />
 <meta content={socialImageURL} property='og:image' />
-{(!ogImage || ogImage === config.socialCard) && <>
+{(!ogImage || ogImage === site.socialCard) && <>
   <meta content='512' property='og:image:width' />
   <meta content='512' property='og:image:height' />
 </>}
 {
   articleDate && (
     <>
-      <meta content={config.author} property='article:author' />
+      <meta content={site.author} property='article:author' />
       <meta content={articleDate} property='article:published_time' />
     </>
   )
@@ -68,16 +65,5 @@ const socialImageURL = new URL(ogImage ? ogImage : config.socialCard, Astro.url)
 <meta content={title} property='twitter:title' />
 <meta content={description} property='twitter:description' />
 <meta content={socialImageURL} property='twitter:image' />
-
-{/* Sitemap */}
-<link href='/sitemap-index.xml' rel='sitemap' />
-
-{/* RSS auto-discovery */}
-<link
-  rel='alternate'
-  type='application/rss+xml'
-  title={config.title}
-  href={`${Astro.site}rss.xml`}
-/>
 
 <meta content={Astro.generator} name='generator' />

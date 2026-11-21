@@ -1,44 +1,41 @@
 {
-  "name": "astro-theme-pure",
-  "workspaces": [
-    "packages/*"
-  ],
+  "name": "9dots-blog",
+  "private": true,
   "type": "module",
-  "version": "4.1.3",
   "scripts": {
     "dev": "astro dev",
-    "dev:check": "astro check --watch & astro dev",
-    "build": "astro-pure check && astro check && astro build",
+    "build": "astro check && astro build",
     "preview": "astro preview",
-    "sync": "astro sync",
-    "check": "astro check",
-    "astro": "astro",
-    "pure": "astro-pure",
-    "format": "prettier --write  '**/*.{js,jsx,ts,tsx,md,mdx,astro}'",
-    "lint": "eslint --fix 'src/**/*.{js,ts,jsx,tsx,astro}'",
-    "yijiansilian": "bun lint && bun sync && bun check && bun format",
-    "clean": "rm -rf .astro .vercel dist",
-    "cache:avatars": "tsx preset/scripts/cacheAvatars.ts"
+    "check": "astro check"
   },
   "dependencies": {
-    "@astrojs/check": "^0.9.6",
-    "@astrojs/rss": "^4.0.15",
-    "@astrojs/vercel": "^9.0.4",
-    "@waline/client": "^3.12.2",
-    "astro": "^5.17.3",
-    "astro-pure": "1.4.1",
-    "katex": "^0.16.33",
-    "rehype-katex": "^7.0.1",
-    "remark-math": "^6.0.0",
+    "@astrojs/markdown-remark": "6.3.10",
+    "@shikijs/transformers": "3.23.0",
+    "astro": "5.17.3",
+    "devlop": "^1.1.0",
+    "hastscript": "^9.0.1",
+    "mdast-util-math": "^3.0.0",
+    "micromark-factory-space": "^2.0.1",
+    "micromark-util-character": "^2.1.1",
+    "micromark-util-symbol": "^2.0.1",
+    "pagefind": "1.6.0",
+    "rehype-mathjax": "^7.1.0",
     "sharp": "^0.34.5",
-    "typescript": "^5.9.3"
+    "shiki": "3.23.0",
+    "unist-util-visit": "^5.0.0"
   },
   "devDependencies": {
-    "@ianvs/prettier-plugin-sort-imports": "^4.7.1",
-    "@typescript-eslint/parser": "^8.56.1",
-    "eslint": "^9.39.3",
-    "eslint-plugin-astro": "^1.6.0",
-    "prettier": "^3.8.1",
-    "prettier-plugin-astro": "^0.14.1"
+    "@astrojs/check": "^0.9.6",
+    "@types/hast": "^3.0.4",
+    "@types/mdast": "^4.0.4",
+    "@types/node": "^24.10.0",
+    "micromark-util-types": "^2.0.2",
+    "remark-parse": "^11.0.0",
+    "typescript": "^5.9.3",
+    "unified": "^11.0.5",
+    "vfile": "^6.0.3"
+  },
+  "overrides": {
+    "shiki": "3.23.0"
   }
 }

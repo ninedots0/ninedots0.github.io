@@ -1,19 +1,18 @@
 ---
-import type { SiteMeta } from 'astro-pure/types'
+import { site, type SiteMeta } from '@/site.config'
 import BaseHead from '@/components/BaseHead.astro'
 import Search from '@/components/Search.astro'
 import '@/assets/styles/global.css'
-import '@/assets/styles/app.css'
 import '@/assets/styles/minimal.css'
-interface Props { meta: SiteMeta; highlightColor?: string; class?: string }
-const { meta, class: className } = Astro.props
+interface Props { meta: SiteMeta; class?: string; lang?: string }
+const { meta, class: className, lang = 'en' } = Astro.props
 ---
-<html lang='en'>
+<html lang={lang}>
   <head><BaseHead {...meta} /></head>
   <body class:list={['minimal-site', className]}>
     <div id='main-container'>
       <header class='site-header' data-pagefind-ignore>
-        <a class='site-name' href='/'>9dots</a>
+        <a class='site-name' href='/'>{site.title}</a>
         <nav aria-label='Main navigation'>
           <a href='/about'>About</a>
           <button type='button' data-search-open aria-label='Search articles' aria-haspopup='dialog' aria-controls='search-dialog'>

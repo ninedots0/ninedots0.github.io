@@ -15,7 +15,7 @@
 @font-face { font-family: Geist; src: url('/fonts/geist/Geist.ttf') format('truetype'); font-weight: 100 900; font-style: normal; font-display: swap; }
 /* Reference geometry: 42rem shell, 24px gutters, 14px index, 56px year column. */
 html { color-scheme: light; background: #fff; }
-body.minimal-site { margin: 0; background: #fff; color: #171717; font-family: var(--font-reading); font-size: 14px; line-height: 1.5; --background: 0 0% 100%; --foreground: 0 0% 9%; --muted-foreground: 0 0% 45%; --primary: 0 0% 9%; }
+body.minimal-site { margin: 0; background: #fff; color: #171717; font-family: var(--font-reading); font-size: 14px; line-height: 1.5; }
 .minimal-site #main-container { max-width: 42rem; padding: 24px; margin: 0 auto; min-height: 100dvh; }
 .site-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 40px; }
 .site-name { font-size: 18px; font-weight: 700; letter-spacing: -0.4px; }
@@ -40,7 +40,6 @@ body.minimal-site { margin: 0; background: #fff; color: #171717; font-family: va
 .search-results a { display: flex; gap: 12px; justify-content: space-between; padding: 12px 0; }
 .search-results time { font-size: 12px; color: #737373; flex-shrink: 0; }
 .search-results a:focus { text-decoration: underline; }
-.minimal-site .animate { animation: none; opacity: 1; }
 @media (max-width: 640px) {
   .minimal-site #main-container { padding: 12px 24px 24px; }
   .site-header { margin-bottom: 20px; }

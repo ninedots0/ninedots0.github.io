@@ -1,12 +1,5 @@
 /* Blog-only reading surface. Keep the site's navigation and other pages intact. */
 body.academic-page {
-  --background: 0 0% 100%;
-  --foreground: 0 0% 0%;
-  --muted-foreground: 0 0% 35%;
-  --primary: 0 0% 20%;
-  --muted: 0 0% 97%;
-  --border: 0 0% 80%;
-  --card: 0 0% 100%;
   color-scheme: light;
   background: white;
   color: black;
@@ -37,7 +30,6 @@ body.academic-page {
 .academic-content h2 { font-size: 1.4em; }
 .academic-content h3 { font-size: 1.18em; }
 .academic-content :is(h4, h5, h6) { font-size: 1em; }
-.academic-content .anchor { display: none; }
 .academic-content p { margin: 0 0 1.5em; }
 .academic-content :is(ul, ol) { padding-left: 1.6em; margin: 1em 0; }
 .academic-content ul { list-style: disc; }
@@ -49,42 +41,45 @@ body.academic-page {
 .academic-content figure { margin: 1.5em 0; }
 .academic-content figcaption { text-align: center; font-size: 0.875em; color: #555; }
 .academic-content hr { border: 0; border-top: 1px solid #ddd; margin: 2em 0; }
+.academic-content .article-table { display: flex; justify-content: center; }
 .academic-content table { display: block; max-width: 100%; overflow-x: auto; border-collapse: collapse; margin: 1.5em 0; font-size: 0.95em; }
 .academic-content :is(th, td) { text-align: left; padding: 0.45em 0.8em; border-bottom: 1px solid #ddd; }
 .academic-content th { font-weight: 700; }
-/* Scroll only display math; leave inline math and KaTeX's internal geometry alone. */
-.academic-content .katex { font-size: 1em; }
-.academic-content .katex-display {
-  font-size: 17px;
+/* Center short equations and keep the left edge of wide equations reachable. */
+.academic-content mjx-container[jax='SVG'][display='true'] {
   display: block;
   max-width: 100%;
   overflow-x: auto;
   overflow-y: hidden;
   padding: 0.35em 0.25em;
   margin: 0.65em 0;
+  font-size: 17px;
   text-align: center;
 }
-/* Keep a wide formula's left edge reachable instead of centering its overflow
-   outside the scroll area. Short formulas still center within the column. */
-.academic-content .katex-display > .katex {
-  width: max-content;
-  min-width: 100%;
+.academic-content mjx-container[jax='SVG'][display='true'] > svg {
+  display: block;
+  margin-inline: auto;
 }
-.academic-content .katex-html { overflow: visible; padding: 0; }
-.academic-content .katex-html .base { margin: 0; }
-.academic-content .katex-html .tag { position: absolute !important; display: inline-block; padding-inline-start: 0; }
 .academic-content code { font-family: 'Cascadia Code', Consolas, monospace; font-size: 0.85em; }
 .academic-content :not(pre) > code { background: transparent; padding: 0; }
-.academic-content .astro-code { border-radius: 0; background: transparent !important; margin: 1.5em 0; }
-.academic-content :is(pre, .astro-code.collapsed pre) { max-height: none; overflow-x: auto; padding: 0.75em 0; line-height: 1.6; background: transparent; }
-.academic-content .astro-code pre code { width: max-content; min-width: 100%; }
-.academic-content .astro-code pre code::before,
-.academic-content .astro-code pre code .line::before { display: none; }
-.academic-content .astro-code pre code .line { padding: 0; }
+.academic-content .astro-code {
+  display: flex;
+  flex-direction: column;
+  background: transparent !important;
+  margin: 1.5em 0;
+}
+.academic-content pre {
+  max-height: none;
+  overflow-x: auto;
+  padding: 0.75em 0;
+  line-height: 1.6;
+  background: transparent;
+}
+.academic-content .astro-code pre code { display: block; width: max-content; min-width: 100%; min-height: 1.5rem; }
 .academic-content .astro-code pre span { color: #222 !important; background: transparent !important; }
-.academic-content .astro-code :is(.copy, .language, .collapse-toggle, .collapse-fade) { display: none; }
-.academic-content .astro-code .title { position: static; margin: 0; padding: 0; border: 0; border-radius: 0; font-size: 0.8em; }
-.academic-content .astro-code:has(div.title) { padding-top: 0; }
+.academic-content .astro-code .line:last-child:empty,
+.academic-content .astro-code .line:last-child:has(> span:empty:only-child) { display: none; }
+.academic-content .astro-code .title { color: #595959; font-size: 0.8em; line-height: 1.25rem; }
 @media (max-width: 640px) {
   .academic-heading { margin: 0 0 1.25rem; }
   .academic-content blockquote { margin-inline: 0.75em; }
@@ -92,6 +87,6 @@ body.academic-page {
 @media print {
   body.academic-page .site-header { display: none; }
   .academic-document { max-width: none; margin: 0; font-size: 11pt; }
-  .academic-content .katex-display { overflow: visible; }
+  .academic-content mjx-container[jax='SVG'][display='true'] { overflow: visible; }
 }
 

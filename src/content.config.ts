@@ -1,59 +1,25 @@
 import { glob } from 'astro/loaders'
 import { defineCollection, z } from 'astro:content'
 
-function removeDupsAndLowerCase(array: string[]) {
-  if (!array.length) return array
-  const lowercaseItems = array.map((str) => str.toLowerCase())
-  const distinctItems = new Set(lowercaseItems)
-  return Array.from(distinctItems)
-}
+// Date-only frontmatter can use unpadded months or days, which Date parses as local time.
+const publishDate = z.preprocess((value) => {
+  if (typeof value !== 'string') return value
+  return value.replace(/^(\d{4})-(\d{1,2})-(\d{1,2})$/, (_, year, month, day) =>
+    `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`
+  )
+}, z.coerce.date())
 
-// Define blog collection
 const blog = defineCollection({
-  // Load Markdown and MDX files in the `src/content/blog/` directory.
-  loader: glob({ base: './src/content/blog', pattern: '**/*.{md,mdx}' }),
-  // Required
+  loader: glob({ base: './src/content/blog', pattern: '**/*.md' }),
   schema: ({ image }) =>
     z.object({
-      // Required
       title: z.string().max(60),
       description: z.string().max(160),
-      publishDate: z.coerce.date(),
-      // Optional
-      updatedDate: z.coerce.date().optional(),
-      heroImage: z
-        .object({
-          src: image(),
-          alt: z.string().optional(),
-          inferSize: z.boolean().optional(),
-          width: z.number().optional(),
-          height: z.number().optional(),
-
-          color: z.string().optional()
-        })
-        .optional(),
-      tags: z.array(z.string()).default([]).transform(removeDupsAndLowerCase),
+      publishDate,
+      heroImage: z.object({ src: image() }).optional(),
       language: z.string().optional(),
-      draft: z.boolean().default(false),
-      // Special fields
-      comment: z.boolean().default(true)
+      draft: z.boolean().default(false)
     })
 })
 
-// Define docs collection
-const docs = defineCollection({
-  loader: glob({ base: './src/content/docs', pattern: '**/*.{md,mdx}' }),
-  schema: () =>
-    z.object({
-      title: z.string().max(60),
-      description: z.string().max(160),
-      publishDate: z.coerce.date().optional(),
-      updatedDate: z.coerce.date().optional(),
-      tags: z.array(z.string()).default([]).transform(removeDupsAndLowerCase),
-      draft: z.boolean().default(false),
-      // Special fields
-      order: z.number().default(999)
-    })
-})
-
-export const collections = { blog, docs }
+export const collections = { blog }
