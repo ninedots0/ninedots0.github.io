@@ -190,6 +190,7 @@
   },
   "active": "ac6e6c5c1b338669",
   "lastOpenFiles": [
+    "src/pages/about/index.astro",
     "src/plugins/math-syntax/syntax.js",
     "src/plugins/math-syntax/math-text.js",
     "src/plugins/math-syntax/math-flow.js",
@@ -200,7 +201,6 @@
     "packages/pure/scripts/libs/minimist.cjs",
     "packages/pure/components/advanced/QRCode.astro",
     "packages/pure/components/advanced/LinkPreview.astro",
-    "packages/pure/components/advanced/MediumZoom.astro",
     "packages/pure/README.md",
     "node_modules/cliui/node_modules/wrap-ansi/node_modules/ansi-styles/readme.md",
     "node_modules/vite/node_modules/esbuild/node_modules/@esbuild/win32-x64/README.md",
