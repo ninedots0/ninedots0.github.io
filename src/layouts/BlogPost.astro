@@ -2,7 +2,7 @@
 import type { CollectionEntry } from 'astro:content'
 
 import { site } from '@/site.config'
-import { publicationDate } from '@/utils/publication'
+import { lastUpdatedDate, publicationDate } from '@/utils/publication'
 import PageLayout from '@/layouts/BaseLayout.astro'
 import '@/assets/styles/academic.css'
 
@@ -15,6 +15,7 @@ const { description, heroImage, publishDate, title } = data
 
 const socialImage = heroImage?.src.src ?? site.socialCard
 const articleDate = publishDate.toISOString()
+const updated = lastUpdatedDate(data)
 const articleLanguage = data.language ?? (/\p{Script=Han}/u.test(title) ? 'zh-CN' : 'en')
 ---
 
@@ -25,7 +26,7 @@ const articleLanguage = data.language ?? (/\p{Script=Han}/u.test(title) ? 'zh-CN
         <h1 data-pagefind-meta="title">{title}</h1>
         <div class='academic-metadata'>
           <a href='/about' rel='author'>@9dots</a><span aria-hidden='true'> | </span>
-          <time datetime={articleDate} data-pagefind-meta="date">{publicationDate(publishDate)}</time>
+          <time datetime={updated.toISOString()} data-pagefind-meta="date">{publicationDate(updated)}</time>
         </div>
       </header>
       <div class='academic-content' id='content'><slot /></div>

@@ -1,17 +1,18 @@
 ---
 import type { CollectionEntry } from 'astro:content'
-import { publicationDate } from '@/utils/publication'
+import { lastUpdatedDate, publicationDate } from '@/utils/publication'
 interface Props { posts: CollectionEntry<'blog'>[] }
 const { posts } = Astro.props
 ---
-<ul class='post-index' aria-label='Articles by publication year'>
+<ul class='post-index' aria-label='Articles by last updated year'>
   {posts.map((post, index) => {
-    const year = post.data.publishDate.getUTCFullYear()
-    const first = index === 0 || posts[index - 1].data.publishDate.getUTCFullYear() !== year
+    const date = lastUpdatedDate(post.data)
+    const year = date.getUTCFullYear()
+    const first = index === 0 || lastUpdatedDate(posts[index - 1].data).getUTCFullYear() !== year
     return <li>
       <span class='post-year'>{first ? year : ''}</span>
       <a href={`/blog/${post.id}`}>{post.data.title}</a>
-      <time datetime={post.data.publishDate.toISOString()}>{publicationDate(post.data.publishDate)}</time>
+      <time datetime={date.toISOString()}>{publicationDate(date)}</time>
     </li>
   })}
 </ul>
