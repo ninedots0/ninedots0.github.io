@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "src/content/blog/11.md",
+                "file": "src/content/blog/2.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "11"
+              "title": "2"
             }
           }
         ]
@@ -190,6 +190,15 @@
   },
   "active": "ac6e6c5c1b338669",
   "lastOpenFiles": [
+    "src/content/blog/3.md",
+    "src/content/blog/4.md",
+    "src/content/blog/5.md",
+    "src/content/blog/6.md",
+    "src/content/blog/9.md",
+    "src/content/blog/8.md",
+    "src/content/blog/7.md",
+    "src/content/blog/10.md",
+    "src/content/blog/11.md",
     "dist/blog/transaction-records-and-analysis/index.html",
     "dist/blog/my-principles-for-value-investing/index.html",
     "dist/blog/7/index.html",
@@ -200,7 +209,6 @@
     "dist/blog/9/index.html",
     "dist/blog/6/index.html",
     "dist/blog/5/index.html",
-    "dist/blog/4/index.html",
     "dist/favicon/favicon-32x32.png",
     "dist/favicon/favicon-16x16.png",
     "dist/favicon/apple-touch-icon.png",
@@ -227,14 +235,6 @@
     "node_modules/@types/mathjax/README.md",
     "packages/pure/README.md",
     "node_modules/cliui/node_modules/wrap-ansi/node_modules/ansi-styles/readme.md",
-    "node_modules/vite/node_modules/esbuild/node_modules/@esbuild/win32-x64/README.md",
-    "node_modules/vite/node_modules/esbuild/README.md",
-    "node_modules/vite/node_modules/esbuild/LICENSE.md",
-    "node_modules/astro/node_modules/smol-toml/README.md",
-    "node_modules/mathjax-full/README.md",
-    "node_modules/mathjax-full/CONTRIBUTING.md",
-    "node_modules/speech-rule-engine/node_modules/commander/Readme.md",
-    "node_modules/speech-rule-engine/bin/README.md",
-    "node_modules/speech-rule-engine/README.md"
+    "node_modules/vite/node_modules/esbuild/node_modules/@esbuild/win32-x64/README.md"
   ]
 }
