@@ -26,7 +26,7 @@ const articleLanguage = data.language ?? (/\p{Script=Han}/u.test(title) ? 'zh-CN
         <h1 data-pagefind-meta="title">{title}</h1>
         <div class='academic-metadata'>
           <a href='/about' rel='author'>@9dots</a><span aria-hidden='true'> | </span>
-          <time datetime={updated.toISOString()} data-pagefind-meta="date">{publicationDate(updated)}</time>
+          {'update on '}<time datetime={updated.toISOString()} data-pagefind-meta="date">{publicationDate(updated)}</time>
         </div>
       </header>
       <div class='academic-content' id='content'><slot /></div>

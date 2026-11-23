@@ -190,6 +190,17 @@
   },
   "active": "ac6e6c5c1b338669",
   "lastOpenFiles": [
+    "dist/blog/transaction-records-and-analysis/index.html",
+    "dist/blog/linear-algebra-record/index.html",
+    "dist/blog/8/index.html",
+    "dist/blog/fu-haipeng-strategic/index.html",
+    "dist/blog/my-principles-for-value-investing/index.html",
+    "dist/blog/4/index.html",
+    "dist/blog/9/index.html",
+    "dist/blog/7/index.html",
+    "dist/blog/6/index.html",
+    "dist/blog/3/index.html",
+    "dist/blog/5/index.html",
     "src/content/blog/3.md",
     "src/content/blog/4.md",
     "src/content/blog/5.md",
@@ -199,16 +210,6 @@
     "src/content/blog/7.md",
     "src/content/blog/10.md",
     "src/content/blog/11.md",
-    "dist/blog/transaction-records-and-analysis/index.html",
-    "dist/blog/my-principles-for-value-investing/index.html",
-    "dist/blog/7/index.html",
-    "dist/blog/linear-algebra-record/index.html",
-    "dist/blog/fu-haipeng-strategic/index.html",
-    "dist/blog/8/index.html",
-    "dist/blog/11/index.html",
-    "dist/blog/9/index.html",
-    "dist/blog/6/index.html",
-    "dist/blog/5/index.html",
     "dist/favicon/favicon-32x32.png",
     "dist/favicon/favicon-16x16.png",
     "dist/favicon/apple-touch-icon.png",
@@ -234,7 +235,6 @@
     "AGENTS.md",
     "node_modules/@types/mathjax/README.md",
     "packages/pure/README.md",
-    "node_modules/cliui/node_modules/wrap-ansi/node_modules/ansi-styles/readme.md",
-    "node_modules/vite/node_modules/esbuild/node_modules/@esbuild/win32-x64/README.md"
+    "node_modules/cliui/node_modules/wrap-ansi/node_modules/ansi-styles/readme.md"
   ]
 }
